@@ -1,0 +1,63 @@
+"use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var MaiorConsumo_1 = __importDefault(require("./MaiorConsumo"));
+var lista_1 = __importDefault(require("../variaveis/lista"));
+var ListagemClientes = /** @class */ (function (_super) {
+    __extends(ListagemClientes, _super);
+    function ListagemClientes(clientes) {
+        var _this = _super.call(this) || this;
+        _this.clientes = clientes;
+        return _this;
+    }
+    ListagemClientes.prototype.listar = function () {
+        var clientesQueMaisConsumiram = new MaiorConsumo_1.default(this.clientes);
+        console.log("-");
+        console.log(clientesQueMaisConsumiram);
+        console.log("-");
+        console.log("\nLista de todos os clientes:");
+        this.clientes.forEach(function (cliente) {
+            console.log("Nome: " + cliente.nome);
+            console.log("Nome social: " + cliente.nomeSocial);
+            console.log("CPF: " + cliente.getCpf.getValor);
+            console.log("-");
+            console.log("Servi\u00E7os Usados");
+            var valorServicos = 0;
+            cliente.getServicosConsumidos.forEach(function (servico) {
+                console.log("Nome do servi\u00E7o: ".concat(servico.tipo));
+                console.log("valor do servio\u00E7o: ".concat(servico.valor));
+                valorServicos = servico.valor + valorServicos;
+            });
+            console.log("produtos consumidos");
+            var valorProdutos = 0;
+            cliente.getProdutosConsumidos.forEach(function (produto) {
+                console.log("Nome do servi\u00E7o: ".concat(produto.nome));
+                console.log("valor do servio\u00E7o: ".concat(produto.valor));
+                valorProdutos = produto.valor + valorProdutos;
+            });
+            var valorTotal = valorServicos + valorProdutos;
+            console.log("Valor total gasto em servi\u00E7o: ".concat(valorTotal));
+            console.log("-");
+        });
+        console.log("\n");
+    };
+    return ListagemClientes;
+}(lista_1.default));
+exports.default = ListagemClientes;
